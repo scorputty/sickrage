@@ -2,7 +2,7 @@
 
 # Docker sickrage (Alpine)
 
-This is a Dockerfile to set up "sickrage" - (https://sickragebt.com/).
+This is a Dockerfile to set up "Sickrage" - (https://sickragebt.com/).
 
 ### Docker Hub
 The built image is also hosted at Docker Hub - (https://hub.docker.com/r/cryptout/sickrage/).
