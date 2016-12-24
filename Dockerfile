@@ -41,9 +41,10 @@ RUN \
        python-dev && \
 
 # install pip packages
+ pip install --upgrade pip && \
  pip install --no-cache-dir -U \
        setuptools && \
- pip install install --no-cache-dir -U \
+ pip install --no-cache-dir -U \
        pyopenssl cheetah requirements && \
 
 # get sickrage
