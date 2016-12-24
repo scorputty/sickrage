@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:edge
 
 MAINTAINER scorputty
 LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.1"
