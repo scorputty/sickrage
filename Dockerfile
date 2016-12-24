@@ -49,6 +49,13 @@ RUN \
 
 # get sickrage
  git clone --depth 1 https://github.com/SickRage/SickRage.git /sickrage && \
+ cd sickrage && \
+ git remote set-url origin https://github.com/SickRage/SickRage.git && \
+ git fetch origin && \
+ git checkout master && \
+ git branch -u origin/master && \
+ git reset --hard origin/master && \
+ git pull && \
 
 # cleanup
  cd / && \
