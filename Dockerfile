@@ -11,7 +11,7 @@ ENV appGroup="1000"
 VOLUME ["/config", "/data", "/cache"]
 
 # ports should be mapped with the run command to match your situation
-EXPOSE 8981
+EXPOSE 8081
 
 # copy the start script and config to the container
 COPY ./start.sh /start.sh

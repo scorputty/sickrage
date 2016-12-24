@@ -1,4 +1,4 @@
-@test "Opening Transmission on port 9091" {
-  run curl http://localhost:9091
+@test "Opening Sickrage on port 8081" {
+  run curl http://localhost:8081
   [ "${status}" -eq 0 ]
 }
