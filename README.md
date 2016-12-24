@@ -59,7 +59,7 @@ Or replace localhost with your target IP. Login with admin/sickrage.
 ## Info
 * Shell access whilst the container is running: `docker exec -it sickrage /bin/sh`
 * To monitor the logs of the container in realtime: `docker logs -f sickrage`
-* Change sickrage-daemon config: `docker run -ti cryptout/sickrage vi /etc/sickrage-daemon/settings.json`
+
 
 # Notes
 I'm still learning Docker and use these private (pet)projects to develop my skills.
