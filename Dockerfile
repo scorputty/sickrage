@@ -68,7 +68,7 @@ RUN mkdir -p /config \
 RUN adduser -D -u ${appGroup} ${appUser}
 
 # set owner
-RUN chown -R ${appUser}:${appGroup} /start.sh /config /data /cache
+RUN chown -R ${appUser}:${appGroup} /start.sh /config /data /cache /sickrage
 
 # switch to App user
 USER ${appUser}
