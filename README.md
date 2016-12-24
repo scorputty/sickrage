@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/scorputty/sickrage.svg?branch=master)](https://travis-ci.org/scorputty/sickrage) [![](https://images.microbadger.com/badges/image/cryptout/sickrage.svg)](https://microbadger.com/images/cryptout/sickrage "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/cryptout/sickrage.svg)](https://microbadger.com/images/cryptout/sickrage "Get your own version badge on microbadger.com")
 
-# Docker sickrage (Alpine)
+# Docker Sickrage (Alpine)
 
 This is a Dockerfile to set up "Sickrage" - (https://sickragebt.com/).
 
