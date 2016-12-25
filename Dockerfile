@@ -1,14 +1,14 @@
 FROM alpine:edge
 
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.1"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.2"
 
 # variables
 ENV appUser="media"
 ENV appGroup="1000"
 
 # mounted volumes should be mapped to media files and config with the run command
-VOLUME ["/config", "/data", "/cache"]
+VOLUME ["/config", "/data"]
 
 # ports should be mapped with the run command to match your situation
 EXPOSE 8081
@@ -68,14 +68,14 @@ RUN \
 
 # create directories
 RUN mkdir -p /config \
-  && mkdir -p /data \
-  && mkdir -p /cache
+  && mkdir -p /data
+
 
 # user with access to media files and config
 RUN adduser -D -u ${appGroup} ${appUser}
 
 # set owner
-RUN chown -R ${appUser}:${appGroup} /start.sh /config /data /cache /sickrage
+RUN chown -R ${appUser}:${appGroup} /start.sh /config /data /sickrage
 
 # switch to App user
 USER ${appUser}
