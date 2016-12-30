@@ -10,7 +10,7 @@ ENV PUID="10000"
 ENV PGID="10000"
 
 # mounted volumes should be mapped to media files and config with the run command
-VOLUME ["/config", "/data"]
+VOLUME ["/config", "/data", "/media"]
 
 # ports should be mapped with the run command to match your situation
 EXPOSE 8081
