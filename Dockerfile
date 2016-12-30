@@ -1,11 +1,13 @@
 FROM alpine:edge
 
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.2"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.3"
 
 # variables
 ENV appUser="media"
-ENV appGroup="1000"
+ENV appGroup="media"
+ENV PUID="10000"
+ENV PGID="10000"
 
 # mounted volumes should be mapped to media files and config with the run command
 VOLUME ["/config", "/data"]
@@ -67,12 +69,13 @@ RUN \
        /tmp/*
 
 # create directories
-RUN mkdir -p /config \
-  && mkdir -p /data
+RUN mkdir -p /config && \
+ mkdir -p /data
 
 
 # user with access to media files and config
-RUN adduser -D -u ${appGroup} ${appUser}
+RUN addgroup -g ${PGID} ${appGroup} && \
+ adduser -G ${appGroup} -D -u ${PUID} ${appUser}
 
 # set owner
 RUN chown -R ${appUser}:${appGroup} /start.sh /config /data /sickrage
