@@ -17,7 +17,7 @@ docker run -d -h $(hostname) \
     -v ${VOL_CONFIG}:/config \
     -v ${VOL_CACHE}:/cache \
     -v ${VOL_MEDIA}:/media \
-    -v /etc/localtime:/etc/timezone \
+    -v /etc/localtime:/etc/timezone:ro \
     -e PUID=10000 \
     -e PGID=10000 \
     --name=sickrage --restart=always cryptout/sickrage
