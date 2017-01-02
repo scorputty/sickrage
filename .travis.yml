@@ -13,7 +13,8 @@ install:
 
 script:
   - ./rundocker.sh
-  - until $(curl --output /dev/null -I -s -X GET http://localhost:8081); do printf '.' ;sleep 1;done
+  - sleep 4
+  - bats tests/
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
