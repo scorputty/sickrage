@@ -4,6 +4,7 @@ MAINTAINER scorputty
 LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.3"
 
 # variables
+ENV TZ="Europe/Amsterdam"
 ENV appUser="media"
 ENV appGroup="media"
 ENV PUID="10000"
