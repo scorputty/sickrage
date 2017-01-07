@@ -3,15 +3,11 @@ sudo: required
 services:
   - docker
 
-before_install:
-  - sudo ufw disable
-
 install:
   - docker build --rm --no-cache -t cryptout/sickrage ../sickrage
-  - ./rundocker.sh
 
 script:
-  - bats tests/
+  - ./rundocker.sh
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
