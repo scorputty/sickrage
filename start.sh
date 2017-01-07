@@ -4,8 +4,6 @@ set -e
 
 # if /config doesnt exist, exit
 test -d /config || exit 1
-# same goes for data
-test -d /data || exit 2
 
 mkdir -p /config/cache
 

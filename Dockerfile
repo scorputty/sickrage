@@ -1,7 +1,7 @@
 FROM alpine:edge
 
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.3"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.4"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -11,7 +11,7 @@ ENV PUID="10000"
 ENV PGID="10000"
 
 # mounted volumes should be mapped to media files and config with the run command
-VOLUME ["/config", "/data", "/media"]
+VOLUME ["/config", "/media"]
 
 # ports should be mapped with the run command to match your situation
 EXPOSE 8081
@@ -23,6 +23,8 @@ COPY ./start.sh /start.sh
 RUN \
  apk --update add --no-cache \
        ca-certificates \
+       bash \
+       su-exec \
        py2-pip \
        git \
        python \
