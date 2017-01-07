@@ -3,17 +3,12 @@ sudo: required
 services:
   - docker
 
-env:
-  global:
-    - appUser="media"
-    - appGroup="media"
-
 install:
   - docker build --rm --no-cache -t cryptout/sickrage ../sickrage
+  - ./rundocker.sh
+  - sleep 10
 
 script:
-  - ./rundocker.sh
-  - sleep 8
   - bats tests/
 
 after_success:
