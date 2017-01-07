@@ -3,10 +3,12 @@ sudo: required
 services:
   - docker
 
+before_install:
+  - sudo ufw disable
+
 install:
   - docker build --rm --no-cache -t cryptout/sickrage ../sickrage
   - ./rundocker.sh
-  - sleep 10
 
 script:
   - bats tests/
