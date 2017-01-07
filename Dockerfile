@@ -1,5 +1,4 @@
 FROM alpine:edge
-
 MAINTAINER scorputty
 LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.5"
 
@@ -17,7 +16,7 @@ VOLUME ["/config", "/media"]
 EXPOSE 8081
 
 # copy the start script and config to the container
-COPY ./start.sh /start.sh
+COPY start.sh /start.sh
 
 # install runtime packages
 RUN \
@@ -36,10 +35,10 @@ RUN \
        tzdata && \
 
 # update certificates
-       update-ca-certificates && \
+ update-ca-certificates && \
 
 # install build packages (these will be removed later)
-       apk add --no-cache --virtual=build-dependencies \
+ apk add --no-cache --virtual=build-dependencies \
        g++ \
        gcc \
        make \
