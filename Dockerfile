@@ -1,7 +1,7 @@
 FROM alpine:edge
 
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.4"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.5"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -52,7 +52,7 @@ RUN \
  pip install --no-cache-dir -U \
        pyopenssl cheetah requirements && \
 
-# get sickrage
+# get sickrage and update
  git clone --depth 1 https://github.com/SickRage/SickRage.git /sickrage && \
  cd sickrage && \
  git remote set-url origin https://github.com/SickRage/SickRage.git && \
@@ -73,7 +73,7 @@ RUN \
 
 # create directories
 RUN mkdir -p /config && \
- mkdir -p /data
+ mkdir -p /media
 
 
 # user with access to media files and config
@@ -81,7 +81,7 @@ RUN addgroup -g ${PGID} ${appGroup} && \
  adduser -G ${appGroup} -D -u ${PUID} ${appUser}
 
 # set owner
-RUN chown -R ${appUser}:${appGroup} /start.sh /config /data /sickrage
+RUN chown -R ${appUser}:${appGroup} /start.sh /config /media /sickrage
 
 # switch to App user
 USER ${appUser}
