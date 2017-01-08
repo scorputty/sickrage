@@ -1,6 +1,6 @@
 FROM alpine:edge
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.5"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.6"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -67,7 +67,6 @@ RUN \
        build-dependencies && \
  rm -rf \
        /var/cache/apk/* \
-       /sickrage/.git \
        /tmp/*
 
 # create directories
