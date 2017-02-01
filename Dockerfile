@@ -1,6 +1,6 @@
 FROM alpine:edge
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.6"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.7"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -49,7 +49,7 @@ RUN \
  pip install --no-cache-dir -U \
        setuptools && \
  pip install --no-cache-dir -U \
-       pyopenssl cheetah requirements && \
+       pyopenssl cryptography cheetah mako lockfile ndg-httpsclient notify pyasn1 requirements && \
 
 # get sickrage and update
  git clone --depth 1 https://github.com/SickRage/SickRage.git /sickrage && \
