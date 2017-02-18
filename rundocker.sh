@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-# edit for your situation
-VOL_CONFIG="/Volumes/shares/docker/data/sickrage/config"
-VOL_MEDIA="/Volumes/shares/docker/media"
+# edit for your situation (config/sickrage should be there)
+VOL_SHARE="/Volumes/shares/docker/"
 
-test -d ${VOL_CONFIG} || VOL_CONFIG="${PWD}${VOL_CONFIG}" && mkdir -p ${VOL_CONFIG}
-test -d ${VOL_MEDIA} || VOL_MEDIA="${PWD}${VOL_MEDIA}" && mkdir -p ${VOL_MEDIA}
+test -d ${VOL_SHARE} || VOL_SHARE="${PWD}${VOL_SHARE}" && mkdir -p ${VOL_SHARE}/config/sickrage
 
 docker run -d -h $(hostname) \
     -p 8081:8081 \
-    -v ${VOL_CONFIG}:/config \
-    -v ${VOL_MEDIA}:/media \
+    -v ${VOL_SHARE}:/share \
     -e TZ="Europe/Amsterdam" \
     -e appUser="media" \
     -e appGroup="media" \

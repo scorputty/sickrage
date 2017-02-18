@@ -1,6 +1,6 @@
 FROM alpine:edge
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.7"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.8"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -8,9 +8,6 @@ ENV appUser="media"
 ENV appGroup="media"
 ENV PUID="10000"
 ENV PGID="10000"
-
-# mounted volumes should be mapped to media files and config with the run command
-VOLUME ["/config", "/media"]
 
 # ports should be mapped with the run command to match your situation
 EXPOSE 8081
@@ -51,15 +48,8 @@ RUN \
  pip install --no-cache-dir -U \
        pyopenssl cryptography cheetah mako lockfile ndg-httpsclient notify pyasn1 requirements && \
 
-# get sickrage and update
+# get sickrage and update is now in start.sh
  git clone --depth 1 https://github.com/SickRage/SickRage.git /sickrage && \
- cd sickrage && \
- git remote set-url origin https://github.com/SickRage/SickRage.git && \
- git fetch origin && \
- git checkout master && \
- git branch -u origin/master && \
- git reset --hard origin/master && \
- git pull && \
 
 # cleanup
  cd / && \
@@ -69,20 +59,24 @@ RUN \
        /var/cache/apk/* \
        /tmp/*
 
-# create directories
-RUN mkdir -p /config && \
- mkdir -p /media
-
-
 # user with access to media files and config
 RUN addgroup -g ${PGID} ${appGroup} && \
  adduser -G ${appGroup} -D -u ${PUID} ${appUser}
 
+# create dir to be mounted over by volume
+RUN mkdir -p /share/config/sickrage && touch /share/config/sickrage/tag.txt
+
 # set owner
-RUN chown -R ${appUser}:${appGroup} /start.sh /config /media /sickrage
+RUN chown -R ${appUser}:${appGroup} /start.sh /sickrage /share
+
+# make sure start.sh is executable
+RUN chmod u+x  /start.sh
 
 # switch to App user
 USER ${appUser}
+
+# single mounted shared volume
+VOLUME ["/share"]
 
 # start application
 CMD ["/start.sh"]
