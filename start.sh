@@ -2,14 +2,15 @@
 
 set -e
 
-# if /config doesnt exist, exit
-test -d /config || exit 1
+# /share/config maps to nfs share home-server/config
+test -d /share/config/sickrage || exit 1
 
-mkdir -p /config/cache
+# make user to update config.ini to match this cache location
+mkdir -p /tmp/cache
 
-touch /config/config.ini
-touch /config/sickbeard.db
-touch /config/sickbeard.db.v43
+touch /share/config/sickrage/config.ini
+touch /share/config/sickrage/sickbeard.db
+touch /share/config/sickrage/sickbeard.db.v43
 
 cd /sickrage
 
@@ -17,4 +18,4 @@ cd /sickrage
 git pull origin
 
 # start sickrage
-/usr/bin/python /sickrage/SickBeard.py --datadir=/config/ --config=/config/config.ini
+/usr/bin/python /sickrage/SickBeard.py --datadir=/share/config/sickrage --config=/share/config/sickrage/config.ini
