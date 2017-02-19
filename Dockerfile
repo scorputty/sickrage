@@ -1,6 +1,6 @@
 FROM alpine:edge
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.8"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.9"
 
 # variables
 ENV TZ="Europe/Amsterdam"

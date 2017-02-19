@@ -5,9 +5,6 @@ set -e
 # /share/config maps to nfs share home-server/config
 test -d /share/config/sickrage || exit 1
 
-# make user to update config.ini to match this cache location
-mkdir -p /tmp/cache
-
 touch /share/config/sickrage/config.ini
 touch /share/config/sickrage/sickbeard.db
 touch /share/config/sickrage/sickbeard.db.v43
