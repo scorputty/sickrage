@@ -46,7 +46,7 @@ RUN \
  pip install --no-cache-dir -U \
        setuptools && \
  pip install --no-cache-dir -U \
-       pyopenssl cryptography cheetah mako lockfile ndg-httpsclient notify pyasn1 requirements && \
+       pyopenssl cryptography cheetah mako lockfile ndg-httpsclient notify pyasn1 requirements tzlocal && \
 
 # get sickrage and update is now in start.sh
  git clone --depth 1 https://github.com/SickRage/SickRage.git /sickrage && \
