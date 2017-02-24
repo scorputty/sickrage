@@ -15,6 +15,25 @@ cd sickrage
 ./build.sh
 ```
 
+# Docker compose example
+```
+sickrage:
+  container_name: sickrage
+  image: docker.io/cryptout/sickrage
+  hostname: sickrage
+  network_mode: host
+  environment:
+    - TZ=Europe/Amsterdam
+    - USER=media
+    - USERID=10000
+    - PUID=10000
+    - PGID=10000
+    - ENV appUser=media
+    - ENV appGroup=media
+  volumes:
+    - /share:/share
+```
+
 ### WebGUI
 To reach the WebGUI go to - (http://localhost:9091).
 Or replace localhost with your target IP. Login with admin/sickrage.
