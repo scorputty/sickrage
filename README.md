@@ -2,26 +2,10 @@
 
 # Docker Sickrage (Alpine)
 
-This is a Dockerfile to set up "Sickrage" - (https://sickragebt.com/).
+This is a Dockerfile to build "Sickrage" - (https://sickragebt.com/).
 
 ### Docker Hub
 The built image is also hosted at Docker Hub - (https://hub.docker.com/r/cryptout/sickrage/).
-If you don't want to customize the container you can run it directly by typing the following commands.
-```sh
-export VOL_DATA="/Volumes/shares/docker/data/sickrage/data"
-export VOL_CONFIG="/Volumes/shares/docker/data/sickrage/config"
-export VOL_CACHE="/Volumes/shares/docker/cache/sickrage/cache"
-
-docker run -d -h $(hostname) \
-    -p 8081:8081 \
-    -v ${VOL_DATA}:/data \
-    -v ${VOL_CONFIG}:/config \
-    -v ${VOL_CACHE}:/cache \
-    -v /etc/localtime:/etc/timezone \
-    -e PUID=1000 \
-    -e PGID=1000 \
-    --name=sickrage --restart=always cryptout/sickrage
-```
 
 # Build from Dockerfile
 Clone this repository and run the build.sh script.
@@ -29,27 +13,6 @@ Clone this repository and run the build.sh script.
 git clone https://github.com/scorputty/sickrage.git
 cd sickrage
 ./build.sh
-```
-
-### Variables
-Change to match your situation.
-```Dockerfile
-ENV appUser="media"
-ENV appGroup="1000"
-```
-
-### Volumes
-Make sure to map the Volumes to match your situation.
-```Dockerfile
-VOLUME ["/data"]
-VOLUME ["/config"]
-VOLUME ["/cache"]
-```
-
-### To run the container
-Edit rundocker.sh (this will be replaced by docker-compose soon...).
-```sh
-./rundocker.sh
 ```
 
 ### WebGUI
