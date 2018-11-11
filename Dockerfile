@@ -1,6 +1,6 @@
-FROM alpine:edge
+FROM python:2
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.0.10101010101010101010"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.2"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -12,65 +12,23 @@ ENV PGID="10000"
 # ports should be mapped with the run command to match your situation
 EXPOSE 8081
 
-# copy the start script and config to the container
-COPY start.sh /start.sh
-
-# install runtime packages
-RUN \
- apk --update add --no-cache \
-       ca-certificates \
-       bash \
-       su-exec \
-       py2-pip \
-       git \
-       python \
-       py-libxml2 \
-       py-lxml \
-       openssl-dev \
-       libffi-dev \
-       unrar \
-       tzdata && \
-
-# update certificates
- update-ca-certificates && \
-
-# install build packages (these will be removed later)
- apk add --no-cache --virtual=build-dependencies \
-       g++ \
-       gcc \
-       make \
-       python-dev && \
-
-# install pip packages
- pip install --upgrade pip && \
- pip install --no-cache-dir -U \
-       setuptools && \
- pip install --no-cache-dir -U \
-       pyopenssl cryptography cheetah mako lockfile ndg-httpsclient notify pyasn1 requirements tzlocal && \
-
 # get sickrage and update is now in start.sh
- git clone --depth 1 https://github.com/SickRage/SickRage.git /sickrage && \
+RUN git clone --depth 1 https://github.com/SickRage/SickRage.git /opt/sickrage/
 
-# cleanup
- cd / && \
- apk del --purge \
-       build-dependencies && \
- rm -rf \
-       /var/cache/apk/* \
-       /tmp/*
+# install app
+RUN pip install -U pip setuptools
+RUN pip install -r /opt/sickrage/requirements.txt
+
 
 # user with access to media files and config
-RUN addgroup -g ${PGID} ${appGroup} && \
- adduser -G ${appGroup} -D -u ${PUID} ${appUser}
+RUN groupadd -g ${PGID} ${appGroup} && \
+ useradd -g ${appGroup} -u ${PUID} ${appUser}
 
 # create dir to be mounted over by volume
 RUN mkdir -p /share/config/sickrage && touch /share/config/sickrage/tag.txt
 
 # set owner
-RUN chown -R ${appUser}:${appGroup} /start.sh /sickrage /share
-
-# make sure start.sh is executable
-RUN chmod u+x  /start.sh
+RUN chown -R ${appUser}:${appGroup} /opt/sickrage /share
 
 # switch to App user
 USER ${appUser}
@@ -79,4 +37,4 @@ USER ${appUser}
 VOLUME ["/share"]
 
 # start application
-CMD ["/start.sh"]
+ENTRYPOINT python /opt/sickrage/SiCKRAGE.py --nolaunch --datadir=/share/config/sickrage --config=/share/config/sickrage/config.ini
