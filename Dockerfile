@@ -1,6 +1,6 @@
 FROM python:2
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.3"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.4"
 
 # variables
 ENV TZ="Europe/Amsterdam"
