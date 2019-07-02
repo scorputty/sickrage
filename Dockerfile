@@ -1,6 +1,6 @@
-FROM python:2
+FROM python:3
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.4"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.5"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -12,7 +12,7 @@ ENV PGID="10000"
 # ports should be mapped with the run command to match your situation
 EXPOSE 8081
 
-# get sickrage and update is now in start.sh
+# get sickrage
 RUN git clone --depth 1 https://github.com/SickRage/SickRage.git /opt/sickrage/
 
 # install app
