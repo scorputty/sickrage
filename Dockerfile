@@ -1,6 +1,6 @@
-FROM python:3.7
+FROM python:3
 MAINTAINER scorputty
-LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.7"
+LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.8"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -13,7 +13,7 @@ ENV PGID="10000"
 EXPOSE 8081
 
 # get sickrage
-RUN git clone --depth 1 https://github.com/SickRage/SickRage.git /opt/sickrage/
+RUN git clone --depth 1 https://github.com/SiCKRAGE/SiCKRAGE.git /opt/sickrage/
 
 # install app
 RUN pip install -U pip setuptools
