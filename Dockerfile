@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.7
 MAINTAINER scorputty
 LABEL Description="Sickrage" Vendor="Stef Corputty" Version="0.7"
 
